@@ -71,5 +71,4 @@ public class ProductController {
         productService.deleteById(id);
         return ResponseEntity.ok().build();
     }
-
 }

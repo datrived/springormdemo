@@ -106,7 +106,6 @@ class ProductControllerTest {
 
     @Test
     void deleteById_WhenNotFound() {
-
         Mockito.when(productService.findById(1L)).thenReturn(Optional.empty());
         productController.deleteById(1L);
         Mockito.verify(productService, Mockito.times(0)).deleteById(1L);
@@ -114,10 +113,8 @@ class ProductControllerTest {
 
     @Test
     void deleteById_WhenFound() {
-
         Mockito.when(productService.findById(1L)).thenReturn(Optional.of(p1));
         productController.deleteById(1L);
         Mockito.verify(productService, Mockito.times(1)).deleteById(1L);
-
     }
 }

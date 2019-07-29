@@ -1,30 +1,34 @@
 package com.devanshitrivedi.springormdemo.entity;
 
-import lombok.*;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
-@RequiredArgsConstructor
+
+@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Data
-@EntityListeners(AuditingEntityListener.class)
-public class Product {
+@EntityListeners(value = AuditingEntityListener.class)
+public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //@NonNull for the RequiredArgConstructor
-    @NonNull private String name;
-    @NonNull private String description;
-    @NonNull private double price;
+    @NonNull
+    private String status;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "order")
     private Set<ProductOrderJoin> productOrderQuantity;
 
     @CreationTimestamp
@@ -32,4 +36,5 @@ public class Product {
 
     @UpdateTimestamp
     private Date updatedAt;
+
 }
